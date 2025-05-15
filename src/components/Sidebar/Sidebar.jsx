@@ -8,7 +8,7 @@ const Sidebar = () => {
     const menuItems = [
         { label: 'Subjects', icon: <i className="bi bi-book-half"></i>, route: '/subjects' },
         { label: 'Users', icon: <i className="bi bi-people"></i>, route: '/users' },
-        { label: 'Schedule', icon: <i className="bi bi-calendar-date"></i>, route: '/schedules' },
+        { label: 'Time Tables', icon: <i className="bi bi-calendar-date"></i>, route: '/schedules' },
         { label: 'Exams', icon: <i className="bi bi-bar-chart-line"></i>, route: '/exams' },
         { label: 'Marks', icon: <i className="bi bi-bar-chart-line"></i>, route: '/marks' },
     ];

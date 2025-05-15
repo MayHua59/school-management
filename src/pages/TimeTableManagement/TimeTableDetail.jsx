@@ -5,13 +5,13 @@ import DetailCard from "../../components/DetailCard/DetailCard";
 import ShowError from "../../components/ShowError/ShowError";
 import ConfirmationModal from "../../components/ConfirmationModal/ConfirmationModal";
 
-const SubjectDetail = () => {
+const TimeTableDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [subject, setSubject] = useState(null);
+  const [timeTable, setTimeTable] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-    const [subToDeleteId, setSubToDeleteId] = useState(null);
+    const [timeTableToDeleteId, setTimeTableToDeleteId] = useState(null);
     const [showConfirmModal, setShowConfirmModal] = useState(false);
       const [dataChanged, setDataChanged] = useState(false);
     
@@ -19,38 +19,38 @@ const SubjectDetail = () => {
 
 
   useEffect(() => {
-    const fetchSubject = async () => {
+    const fetchTimeTable = async () => {
       try {
         const response = await axios.get(
-          `https://cloudolt.software100.com.mm/api/v1/subjects/${id}`
+          `https://cloudolt.software100.com.mm/api/v1/timetables/${id}`
         );
-        setSubject(response.data);
+        setTimeTable(response.data);
       } catch (error) {
         setError(
-          error.response?.data?.message || "Failed to fetch Subject details"
+          error.response?.data?.message || "Failed to fetch TimeTable details"
         );
       } finally {
         setLoading(false);
       }
     };
-    fetchSubject();
+    fetchTimeTable();
   }, [id]);
 
   
   if (loading) {
-    return <div>Loading Subject details...</div>;
+    return <div>Loading TimeTable details...</div>;
   }
 
    if (error) {
     return <ShowError message={error} />; 
   }
 
-  if (!subject) {
-    return <div>Subject not found.</div>;
+  if (!timeTable) {
+    return <div>TimeTable not found.</div>;
   }
 
    const handleDeleteClick = (id) => {
-    setSubToDeleteId(id);
+    setTimeTableToDeleteId(id);
     setShowConfirmModal(true);
   };
 
@@ -60,14 +60,14 @@ const SubjectDetail = () => {
       setLoading(true);
       setError(null); 
       axios
-        .delete(`https://cloudolt.software100.com.mm/api/v1/subjects/${id}`)
+        .delete(`https://cloudolt.software100.com.mm/api/v1/timetables/${id}`)
         .then(() => {
-          console.log(`Deleting OLT with ID: ${subToDeleteId}`);
+          console.log(`Deleting TimeTable with ID: ${timeTableToDeleteId}`);
           setDataChanged(!dataChanged);
-          navigate("/subjects");
+          navigate("/timetables");
         })
         .catch((error) => {
-          setError(error.response?.data?.message || "Failed to delete Subject"); 
+          setError(error.response?.data?.message || "Failed to delete TimeTable"); 
         })
         .finally(() => {
           setLoading(false);
@@ -82,14 +82,14 @@ const SubjectDetail = () => {
     <>
     <DetailCard
       title="Subject"
-      item={subject}
-      editUrl={`/subjects/${id}/edit`}
+      item={timeTable}
+      editUrl={`/timetables/${id}/edit`}
       onDelete={handleDeleteClick}
-      backUrl="/subjects"
+      backUrl="/timetables"
     />
      {showConfirmModal && (
         <ConfirmationModal
-          itemId={subToDeleteId} 
+          itemId={timeTableToDeleteId} 
           onConfirm={handleConfirmDelete}
           onCancel={() => setShowConfirmModal(false)}
         />
@@ -98,4 +98,4 @@ const SubjectDetail = () => {
   );
 };
 
-export default SubjectDetail;
+export default TimeTableDetail;
