@@ -5,6 +5,7 @@ import './App.css'
 import AuthenticationPage from './pages/Authentication/AuthenticationPage';
 import HomePage from './pages/HomePage/HomePage';
 import Subjects from './pages/SubjectManagement/Subjects';
+import EditSubject from './pages/SubjectManagement/EditSubject';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,6 +20,7 @@ function App() {
                 
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/subjects" element={<Subjects/>}/>
+                <Route path="/subjects/:id/edit" element={<EditSubject/>}/>
             </Routes>
         </Router>
   )
