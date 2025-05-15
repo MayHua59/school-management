@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const AuthForm = ({isLogin}) => {
+const AuthForm = ({isLogin, onRouteChange}) => {
      const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState(''); 
@@ -120,14 +120,14 @@ const AuthForm = ({isLogin}) => {
                         {isLogin ? (
                             <p className="text-center mt-3 small">
                                 Don't have an account?{' '}
-                                <a href="/signup" className="text-blue">
+                                <a onClick={() => onRouteChange('signup')} className="text-blue pointer">
                                     Sign Up
                                 </a>
                             </p>
                         ) : (
                             <p className="text-center mt-3 small">
                                 Already have an account?{' '}
-                                <a href="/login" className="text-blue">
+                                <a onClick={() => onRouteChange('login')} className="text-blue pointer">
                                     Login
                                 </a>
                             </p>
