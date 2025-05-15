@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './App.css'
 import AuthenticationPage from './pages/Authentication/AuthenticationPage';
+import HomePage from './pages/HomePage/HomePage';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,7 +16,7 @@ function App() {
                 {/* <Route path="/forgot-password" element={<AuthenticationPage />} />
                 <Route path="/reset-password" element={<AuthenticationPage />} /> */}
                 
-                <Route path="/" element={<div>Home Page</div>} />
+                <Route path="/" element={<HomePage/>}/>
             </Routes>
         </Router>
   )

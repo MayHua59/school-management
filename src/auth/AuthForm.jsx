@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AuthForm = ({isLogin, onRouteChange}) => {
+    const navigate = useNavigate();
      const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState(''); 
@@ -36,6 +38,7 @@ const AuthForm = ({isLogin, onRouteChange}) => {
                     console.log('Logged in successfully!', user);
                    
                     // redirect to the dashboard or another page.
+                    navigate('/');
                 
                 } else {
                     setError('Invalid credentials. Please check your email and password.');

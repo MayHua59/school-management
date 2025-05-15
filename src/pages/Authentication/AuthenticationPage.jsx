@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AuthForm from '../../auth/AuthForm';
 
 const AuthenticationPage = () => {
+  const navigate = useNavigate();
     const [isLogin, setIsLogin] = useState(true);
     const [route, setRoute] = useState('login');
 
     const handleRouteChange = (newRoute) => {
         setRoute(newRoute);
+        navigate(newRoute === 'login' ? '/login' : '/signup');
         setIsLogin(newRoute === 'login');
     };
   return (
